@@ -3,7 +3,7 @@ const csv = require('fast-csv'),
     AWS = require('aws-sdk');
 
 AWS.config.loadFromPath('./s3_config.json');
-const s3 = new AWS.S3();
+const s3 = new AWS.S3({apiVersion: '2006-03-01'});
 const myBucketName = 'atg-test-16052019';
 
 exports.index = function(req, res){
@@ -68,6 +68,40 @@ exports.upload = function (req, res){
         }
         console.log(`Successfully uploaded data to ${myBucketName}/${key}`, data);
         fs.unlinkSync(req.body.path);
+        res.redirect("/");
+    });
+};
+
+exports.bucketlifecycle = function (req, res){
+    let params = {
+        Bucket: myBucketName, 
+        LifecycleConfiguration: {
+        Rules: [{
+            Expiration: {
+                Days: 14
+            }, 
+            Filter: {
+                Prefix: ""
+            }, 
+            ID: "ArchivePolicy", 
+            Status: "Enabled", 
+            Transitions: [{
+                    Days: 7, 
+                    StorageClass: "GLACIER"
+                }]
+            }]
+        }
+    };
+  
+    s3.putBucketLifecycleConfiguration(params, function (err, data) {
+        if (err) {
+            console.log("Error setting lifecycle policy: ");
+            console.error("Error setting lifecycle policy: ", err);
+            let error = new Error('Error setting lifecycle policy');
+            error.httpStatusCode = 400;
+            // return next(error);
+            return res.send({ "error": error });
+        }
         res.redirect("/");
     });
 };

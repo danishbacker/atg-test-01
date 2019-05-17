@@ -50,6 +50,8 @@ app.post('/parse', uploadlocal.single('soh'), (req, res, next) => {
 
 app.get('/view', routes.view);
 
+app.get('/bucketlifecycle', routes.bucketlifecycle);
+
 // app.post('/removetask', routes.remove);
 
 app.get('/', routes.index);
