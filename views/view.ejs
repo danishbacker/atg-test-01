@@ -1,0 +1,22 @@
+<html>
+
+<head>
+    <title>CSV Uploader</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100">
+    <link rel="stylesheet" href="/stylesheets/styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2> CSV Uploader App :: View "<%= fileName %>" </h2>
+        <ol>
+            <h3> CSV Rows </h3>
+            <% for( var i = 0; i < rows.length; i++){ %>
+            <li><%= rows[i] %></li>
+            <% } %>
+        </ol>
+    </div>
+
+</body>
+
+</html>

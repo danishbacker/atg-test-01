@@ -1,0 +1,31 @@
+<html>
+
+<head>
+    <title>CSV Uploader</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100">
+    <link rel="stylesheet" href="/stylesheets/styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2> CSV Uploader App </h2>
+
+        <form action="/parse" method="POST" enctype="multipart/form-data">
+            <!-- <input type="text" name="newtask" placeholder="add new task"> -->
+            <input type="file" name="soh" placeholder="upload 'soh.csv'"/>
+            <button> Parse </button>
+        </form>
+
+        <h2> Files in AWS S3 Bucket </h2>
+
+        <ol>
+            <% for(var i = 0; i < uploadedFiles.length; i++){ %>
+            <li><a href="/view?file=<%= uploadedFiles[i] %>"><%= uploadedFiles[i] %></a></li>
+            <% } %>
+        </ol>
+
+    </div>
+
+</body>
+
+</html>

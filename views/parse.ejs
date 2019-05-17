@@ -1,0 +1,28 @@
+<html>
+
+<head>
+    <title>CSV Uploader</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100">
+    <link rel="stylesheet" href="/stylesheets/styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2> CSV Uploader App :: Parsed CSV </h2>
+
+        <form action="/upload" method="POST">
+            <input type="hidden" name="path" value="<%= path %>"/>
+            <button type="submit" id="top"> Upload to S3 </button>
+            <h2> CSV Rows </h2>
+            <ol>
+                <% for( var i = 0; i < rows.length; i++){ %>
+                <li><%= rows[i] %></li>
+                <% } %>
+            </ol>
+        </form>
+
+    </div>
+
+</body>
+
+</html>
