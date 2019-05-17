@@ -1,6 +1,9 @@
 # use latest version of node
 FROM mhart/alpine-node:latest
 
+# Set env
+ENV S3_BUCKET=$S3_BUCKET
+
 # set working directory
 WORKDIR /dist
 
