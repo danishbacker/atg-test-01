@@ -1,7 +1,12 @@
 # use latest version of node
 FROM mhart/alpine-node:latest
 
-# Set env
+# build args
+ARG S3_BUCKET
+ARG AWS_ACCESS_KEY_ID
+ARG AWS_SECRET_ACCESS_KEY
+
+# node env
 ENV S3_BUCKET=${S3_BUCKET} \
     AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} \
     AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
