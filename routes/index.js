@@ -3,13 +3,14 @@ const csv = require('fast-csv'),
     AWS = require('aws-sdk');
 
 // AWS.config.loadFromPath('./s3_config.json');
+const creds = require('./s3_config.json');
 const s3 = new AWS.S3({
     apiVersion: '2006-03-01',
     region : 'us-east-1',
-    accessKeyId : process.env.AWS_ACCESS_KEY_ID,
-    secretAccessKey : process.env.AWS_SECRET_ACCESS_KEY
+    accessKeyId : process.env.AWS_ACCESS_KEY_ID || creds.accessKeyId,
+    secretAccessKey : process.env.AWS_SECRET_ACCESS_KEY || creds.secretAccessKey
 });
-const myBucketName = process.env.S3_BUCKET; //'atg-test-16052019';
+const myBucketName = process.env.S3_BUCKET || 'atg-test-16052019';
 
 exports.index = function(req, res){
     let params = { 
