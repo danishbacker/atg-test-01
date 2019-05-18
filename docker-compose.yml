@@ -1,11 +1,11 @@
-version: "3"
+# version: "3"
 
-services:
-  web:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      args:
-        S3_BUCKET: "${S3_BUCKET}"
-        AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID}"
-        AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY}"
+# services:
+#   web:
+#     build:
+#       context: .
+#       dockerfile: Dockerfile
+#       args:
+#         S3_BUCKET: "${S3_BUCKET}"
+#         AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID}"
+#         AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY}"
