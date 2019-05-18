@@ -17,12 +17,12 @@ FROM mhart/alpine-node:latest
 # set working directory
 WORKDIR /dist
 
+# bundle source code
+COPY . /dist
+
 VOLUME [ "/dist" ]
 
 RUN npm install -g nodemon
-
-# bundle source code
-# COPY . /dist
 
 # inatall application dependencies
 RUN npm install
