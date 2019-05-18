@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: atg-test-01
-        image: danishbacker/atg-test-01
+        image: danishbacker/atg-test-01:dev
         imagePullPolicy: Always
         ports:
         - containerPort: 3000

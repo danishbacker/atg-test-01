@@ -1,4 +1,5 @@
 # use latest version of node
+# FROM smebberson/alpine-nginx-nodejs:latest
 FROM mhart/alpine-node:latest
 
 # build args
@@ -16,8 +17,12 @@ FROM mhart/alpine-node:latest
 # set working directory
 WORKDIR /dist
 
+VOLUME [ "/dist" ]
+
+RUN npm install -g nodemon
+
 # bundle source code
-COPY . /dist
+# COPY . /dist
 
 # inatall application dependencies
 RUN npm install
@@ -26,4 +31,5 @@ RUN npm install
 EXPOSE 3000
 
 # run commands inside container
-CMD ["npm", "start"]
+# CMD ["npm", "start"]
+CMD [ "nodemon", "-L", "index.js" ]
