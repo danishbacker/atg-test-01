@@ -1,11 +1,6 @@
 # Sample Scalable Application on Kubernetes Cluster
 
 > A web application, written in NodeJS to upload, parse and process CSV files and store in S3 Bucket.
-Home page ![Preview](screenshots/home.png)
-File Upload ![Preview](screenshots/upload-csv.png)
-Parse and store in S3 bucket ![Preview](screenshots/parse-csv.png)
-Bucket Policy overview ![Preview](screenshots/bucket-policy-1.png)
-Bucket Policy details ![Preview](screenshots/bucket-policy-2.png)
 
 ## What's needed
 
@@ -134,3 +129,20 @@ $ minikube delete
 $ kubectl get hpa
 $ ab -c 5 -n 100 -t 1000 http://<cluster-ip-addresss>:30003/
 ```
+
+## Screen-shots
+
+* Home page 
+![Preview](screenshots/home.png)
+
+* File Upload 
+![Preview](screenshots/upload-csv.png)
+
+* Parse and store in S3 bucket 
+![Preview](screenshots/parse-csv.png)
+
+* Bucket Policy overview 
+![Preview](screenshots/bucket-policy-1.png)
+
+* Bucket Policy details 
+![Preview](screenshots/bucket-policy-2.png)
