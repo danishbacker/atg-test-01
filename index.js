@@ -1,6 +1,4 @@
-//dependencies required for the app
 const express = require("express");
-const http = require('http');
 const routes = require('./routes');
 const bodyParser = require("body-parser");
 const csv = require('fast-csv');
@@ -12,14 +10,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('views', __dirname + '/views');
 app.set("view engine", "ejs");
-//render css files
-// app.use(express.static("public"));
+
 app.use(express.static(__dirname + '/public'));
 
-//post route for uploading file to s3 bucket.
+/*
+ * POST route: Upload file to S3 bucket.
+ */
 app.post('/upload', routes.upload);
 
-// Set temp storage
+// Multer config set storage
 let storage = multer.diskStorage({
     destination: function (req, file, cb) {
       cb(null, 'tmp');
@@ -28,9 +27,12 @@ let storage = multer.diskStorage({
       cb(null, file.fieldname + '-' + Date.now() + '.csv');
     }
 });
-   
+// Apply multer config
 let uploadlocal = multer({ storage: storage });
 
+/*
+ * POST route: To parse uploaded file and save in local to process.
+ */
 app.post('/parse', uploadlocal.single('soh'), (req, res, next) => {
     const file = req.file;
     if (!file) {
@@ -41,26 +43,31 @@ app.post('/parse', uploadlocal.single('soh'), (req, res, next) => {
     const csvRows = [];
     csv.fromPath(req.file.path, { headers: false, ignoreEmpty: true })
     .on("data", function (data) {
-        csvRows.push(data); // push each row
+        csvRows.push(data);
     })
     .on("end", function () {
         res.render("parse", { title: 'Parser', rows: csvRows, path: req.file.path });
     });
 });
 
+/*
+ * GET route: To view previously uploaded files.
+ */
 app.get('/view', routes.view);
 
+/*
+ * GET route: To set bucket life-cycyle policy.
+ */
 app.get('/bucketlifecycle', routes.bucketlifecycle);
 
-// app.post('/removetask', routes.remove);
-
+/*
+ * GET route: Home page with three actions, 
+ * 1. List uploaded files in S3 bucket.
+ * 2. Upload CSV file.
+ * 3. Set bucket policy.
+ */
 app.get('/', routes.index);
 
 app.listen(app.get('port'), () => {
-  console.log('Express server listening on port ' + app.get('port'));
-  console.log(process.env);
+  console.log('Server listening on port ' + app.get('port'));
 });
-
-// http.createServer(app).listen(app.get('port'), function(){
-//     console.log('Express server listening on port ' + app.get('port'));
-// });
