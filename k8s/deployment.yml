@@ -1,4 +1,4 @@
-apiVersion: apps/v1beta1
+apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: atg-test-01-deployment
@@ -11,7 +11,13 @@ spec:
     spec:
       containers:
       - name: atg-test-01
-        image: danishbacker/atg-test-01:dev
+        # image: danishbacker/atg-test-01-nginx
+        image: danishbacker/atg-test-01:prod
         imagePullPolicy: Always
         ports:
         - containerPort: 3000
+        resources:
+            limits:
+              cpu: "0.5"
+            requests:
+              cpu: "0.25"
