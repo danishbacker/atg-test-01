@@ -71,7 +71,7 @@ $ docker-compose down
 
 ## Infrastructure
 
-* Starting minikube with hyperkit (recommened for mac)
+* Starting minikube with hyperkit (recommended for mac)
 
 ```bash
 $ minikube start --vm-driver=hyperkit
