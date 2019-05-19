@@ -1,8 +1,9 @@
-version: '2'
+version: '3'
 
 services:
 
   nginx:
+    image: danishbacker/atg-test-01-nginx
     build:
       context: .
       dockerfile: .docker/nginx.dockerfile
@@ -32,14 +33,3 @@ services:
 networks:
   app-network:
     driver: bridge
-# version: "3"
-
-# services:
-#   atg-test-01:
-#     build:
-#       context: .
-#       dockerfile: Dockerfile
-#       args:
-#         S3_BUCKET: "${S3_BUCKET}"
-#         AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID}"
-#         AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY}"
