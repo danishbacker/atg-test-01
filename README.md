@@ -48,8 +48,7 @@ $ docker stop $(docker ps -a -q)
 ```
 
 ## Docker Nginx Config
-##### Note: Not working for Kubernetes deployment 
-##### TODO: Update Kubernetes Deployment and Service
+##### Note: Not working for Kubernetes deployment
 
 * Building an image
 
