@@ -130,7 +130,11 @@ $ kubectl get hpa
 $ ab -c 5 -n 100 -t 1000 http://<cluster-ip-addresss>:30003/
 ```
 
-## Screen-shots
+## Auto scaling diagram
+
+![Preview](screenshots/auto-scale.jpg)
+
+## App Screens
 
 > Home page
 
